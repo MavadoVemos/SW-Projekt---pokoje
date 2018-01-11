@@ -21,7 +21,7 @@ void naszmodul::task() {
 		}
 		
 		//POK3_out.write(pok3);
+		cout << "mod" << endl;
 	}
-
 	
 }

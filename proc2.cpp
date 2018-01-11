@@ -10,7 +10,7 @@ void proc2::task() {
 		pok1 = POK1_in.read();
 		pok4 = POK4_in.read();
 
-		if (temp == 3) {
+		if (temp == 3) {		
 			if (kierunek == 1) {
 				pok4++;
 			}
@@ -21,8 +21,7 @@ void proc2::task() {
 				else {
 					pok4--;
 				}
-			}
-		
+			}		
 		}
 
 		if (temp == 4) {
@@ -47,8 +46,6 @@ void proc2::task() {
 				else {
 					pok4--;
 					pok1++;
-					cout << pok4 << endl;
-					cout << pok1 << endl;
 				}
 			}
 			else {
@@ -61,9 +58,9 @@ void proc2::task() {
 				}
 			}
 		}
-		
+			
+		POK1_2_out.write(pok1);		
 		POK4_2_out.write(pok4);
-		POK1_2_out.write(pok1);
-		
+
 	}
 }

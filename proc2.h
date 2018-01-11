@@ -12,7 +12,7 @@ SC_MODULE(proc2) {
 	
 	int pok1 = 0;
 	int pok4 = 0;
-	int kierunek;
+	int kierunek = 1;
 
 	void task();
 	

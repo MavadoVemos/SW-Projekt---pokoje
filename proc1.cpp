@@ -6,11 +6,21 @@ void proc1::task1() {
 	char kierunek1[12] = "lewo - gora";
 	char kierunek2[12] = "prawo - dol";
 	char* kierunek3;
+	int i = 0;
 
 	while (true) {
-		
+
+		if (i == 1) {		
+			POK1_out.write(pok1);
+			POK4_out.write(pok4);
+		}
 
 		wait();
+		
+		if (i == 1) {	
+			pok1 = POK1_2_in.read();
+			pok4 = POK4_2_in.read();
+		}
 
 		if (kierunek == 1) {
 			kierunek3 = kierunek1;
@@ -18,24 +28,14 @@ void proc1::task1() {
 		else {
 			kierunek3 = kierunek2;
 		}	
-
-
+	
 		system("cls");
 		cout << "Wybierz jakimi drzwiami chcesz przejcs: \n\n";
 		cout << "Aktualny kierunek przejscia: " << kierunek3 << "\n\n";
 		cout << "Drzwi 1\nDrzwi 2\nDrzwi 3\nDrzwi 4\nDrzwi 5\nDrzwi 6\nDrzwi 7\nZmien kierunek przejscia 8\n" << endl;
 		cout << "Ilosc osob w pokojach\nPok1: " << pok1 << "\nPok2: " << pok2 << "\nPok3: " << pok3 << "\nPok4: " << pok4 << "\n\n" << endl;
-
+		
 		cin >> input;
-
-		if (input == 4 || input == 3 || input == 5) {
-			pok4 = POK4_2_in.read();
-
-			if (input == 5) {
-				pok1 = POK1_2_in.read();
-			}
-		}
-
 
 		if (input == 8) {
 			if (kierunek == 1) {
@@ -45,7 +45,6 @@ void proc1::task1() {
 				kierunek = 1;
 			}
 			cout << "zmieniono kierunek: " << kierunek << endl;
-
 		}
 
 		if (input == 7) {
@@ -65,19 +64,16 @@ void proc1::task1() {
 				else {
 					pok3--;
 					pok1++;
-					cout << "pok1 wlazlo" << endl;
 				}
 			}
 		}
 
-		dir.write(kierunek);
-		POK1_out.write(pok1);
-		POK3.write(pok3);
-		POK4_out.write(pok4);
+		dir.write(kierunek);		
+		POK3.write(pok3);	
 		state.write(input);
-		fifo_out.write(state.read());
-		fifo1_out.write(kierunek);
-
+		fifo_out.write(input);
+		fifo1_out.write(kierunek);		
+		i=1;
 	}
 }
 
